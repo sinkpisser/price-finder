@@ -8,7 +8,7 @@
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:system-ui,sans-serif;background:#111;color:#eee;max-width:640px;margin:0 auto;padding:1rem;min-height:100vh}
 h1{font-size:16px;font-weight:600;margin-bottom:1rem;color:#fff}
-input[type="password"]{width:100%;padding:10px;background:#1e1e1e;border:1px solid #333;border-radius:6px;color:#eee;font-size:14px;margin-bottom:8px}
+input[type="password"]{width:100%;padding:10px;background:#1e1e1e;border:1px solid #333;border-radius:6px;color:#eee;font-size:14px;margin-bottom:6px}
 input[type="password"]:focus{outline:none;border-color:#555}
 .btn{display:block;width:100%;padding:12px;background:#1e1e1e;border:1px solid #444;border-radius:6px;color:#eee;font-size:14px;cursor:pointer;text-align:center;margin-top:8px;min-height:44px}
 .btn:hover:not(:disabled){background:#2a2a2a;border-color:#666}
@@ -16,33 +16,42 @@ input[type="password"]:focus{outline:none;border-color:#555}
 .btn.primary{background:#1a3a5c;border-color:#2a5a8c;color:#8cc8ff}
 .btn.primary:hover:not(:disabled){background:#1e4570}
 .btn.small{padding:8px 14px;width:auto;display:inline-block;font-size:13px;min-height:36px}
+.btn.danger{background:#2a1010;border-color:#5a2020;color:#f08080}
+.btn.danger:hover:not(:disabled){background:#331515}
 #upload-area{border:1px dashed #444;border-radius:8px;padding:2.5rem 1rem;text-align:center;cursor:pointer;background:#181818;transition:border-color 0.15s}
 #upload-area:hover{border-color:#666}
 #upload-area svg{display:block;margin:0 auto 8px}
-#upload-area p{font-size:13px;color:#888}
-#preview{max-width:100%;border-radius:6px;display:block;margin-bottom:0.5rem}
+#upload-area p{font-size:13px;color:#888;margin-top:4px}
 .label{font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#666;margin:1.25rem 0 6px}
 .box{background:#1a1a1a;border:1px solid #2a2a2a;border-radius:6px;padding:10px 12px;font-size:13px;line-height:1.65;color:#ccc}
-.price-row{display:flex;justify-content:space-between;align-items:flex-start;padding:10px 12px;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:6px;margin-bottom:5px;font-size:13px}
+.price-row{display:flex;justify-content:space-between;align-items:flex-start;padding:9px 12px;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:6px;margin-bottom:5px;font-size:13px}
 .rname{font-weight:600;color:#eee}
 .rsub{font-size:11px;color:#666;margin-top:2px}
 .ramt{font-weight:600;color:#eee;text-align:right}
 .rlink{font-size:11px;color:#5a9fd4;text-decoration:none;display:block;margin-top:2px}
 .t3{opacity:0.55}
 .t3 .ramt{text-decoration:line-through;color:#666}
-.resale-num{font-size:22px;font-weight:700;color:#8cc8ff}
-.resale-pct{font-size:12px;color:#888;margin-top:3px}
-#status{font-size:13px;color:#888;padding:0.75rem 0;text-align:center}
-.spinner{display:inline-block;width:14px;height:14px;border:2px solid #444;border-top-color:#888;border-radius:50%;animation:spin 0.7s linear infinite;vertical-align:middle;margin-right:6px}
+.resale-num{font-size:20px;font-weight:700;color:#8cc8ff}
+.resale-pct{font-size:12px;color:#888;margin-top:2px}
+.none{font-size:12px;color:#555;padding:3px 0}
+.spinner{display:inline-block;width:13px;height:13px;border:2px solid #444;border-top-color:#888;border-radius:50%;animation:spin 0.7s linear infinite;vertical-align:middle;margin-right:6px}
 @keyframes spin{to{transform:rotate(360deg)}}
-.err{background:#2a1010;border:1px solid #5a2020;border-radius:6px;padding:10px 12px;font-size:12px;color:#f08080;line-height:1.6;margin-top:0.75rem;word-break:break-all}
-.item-title{font-size:16px;font-weight:600;color:#fff;margin:1rem 0 0.25rem}
-#key-section{margin-bottom:1.25rem;padding-bottom:1.25rem;border-bottom:1px solid #222}
 .key-row{display:flex;gap:8px;align-items:center}
 .key-row input{margin-bottom:0;flex:1}
 .key-status{font-size:11px;color:#666;margin-top:4px}
 .key-status.ok{color:#4a9}
-.none{font-size:12px;color:#555;padding:4px 0}
+#key-section{margin-bottom:1.25rem;padding-bottom:1.25rem;border-bottom:1px solid #222}
+.item-card{background:#181818;border:1px solid #2a2a2a;border-radius:8px;margin-bottom:10px;overflow:hidden}
+.card-top{display:flex;gap:12px;padding:12px}
+.card-thumb{width:72px;height:72px;object-fit:cover;border-radius:5px;flex-shrink:0;background:#222}
+.card-info{flex:1;min-width:0}
+.card-name{font-size:14px;font-weight:600;color:#fff;margin-bottom:3px;line-height:1.3}
+.card-desc{font-size:12px;color:#888;line-height:1.5}
+.card-status{font-size:12px;color:#666;font-style:italic}
+.card-body{padding:0 12px 12px}
+.err-inline{font-size:12px;color:#f08080;padding:6px 0}
+#batch-controls{display:flex;gap:8px;margin-bottom:1rem}
+#batch-controls .btn{margin-top:0}
 </style>
 </head>
 <body>
@@ -65,136 +74,177 @@ input[type="password"]:focus{outline:none;border-color:#555}
       <circle cx="8.5" cy="8.5" r="1.5"/>
       <polyline points="21 15 16 10 5 21"/>
     </svg>
-    <p>Click to select image (JPEG, PNG, WebP, GIF)</p>
+    <p>Select up to 20 images</p>
+    <p style="font-size:11px;margin-top:4px;color:#555">JPEG · PNG · WebP · GIF</p>
   </div>
-  <input type="file" id="fi" accept="image/jpeg,image/png,image/webp,image/gif" style="display:none" onchange="handleFile(event)">
+  <input type="file" id="fi" accept="image/jpeg,image/png,image/webp,image/gif" multiple style="display:none" onchange="handleFiles(event)">
 </div>
 
-<div id="preview-section" style="display:none">
-  <img id="preview" alt="Selected item">
-  <button class="btn primary" id="go-btn" onclick="run()">&#128269; Analyze Item</button>
-  <button class="btn" id="reset-btn" onclick="reset()">&#8635; New Image</button>
+<div id="queue-section" style="display:none">
+  <div id="batch-controls">
+    <button class="btn danger small" onclick="resetAll()" style="width:auto">&#8635; Clear All</button>
+  </div>
+  <div id="queue"></div>
 </div>
-
-<div id="status" style="display:none"></div>
-<div id="out"></div>
 
 <script>
-const VALID_TYPES = ['image/jpeg','image/png','image/webp','image/gif'];
-const MODEL = 'claude-sonnet-4-6';
-const TIMEOUT_MS = 90000;
-let b64 = null, mtype = 'image/jpeg';
+const VALID = ['image/jpeg','image/png','image/webp','image/gif'];
+const HAIKU = 'claude-haiku-4-5-20251001';
+const SONNET = 'claude-sonnet-4-6';
+const TIMEOUT = 90000;
+let items = [];
 
 window.addEventListener('load', () => {
   const k = localStorage.getItem('apk');
-  if (k) {
-    document.getElementById('api-key').value = k;
-    setKeyStatus('Key loaded.', true);
-  }
+  if (k) { document.getElementById('api-key').value = k; setKeyStatus('Key loaded.', true); }
 });
 
 function setKeyStatus(msg, ok) {
   const el = document.getElementById('key-status');
-  el.textContent = msg;
-  el.className = 'key-status' + (ok ? ' ok' : '');
+  el.textContent = msg; el.className = 'key-status' + (ok ? ' ok' : '');
 }
 
 function saveKey() {
   const k = document.getElementById('api-key').value.trim();
-  if (!k.startsWith('sk-ant-')) { setKeyStatus('Key should start with sk-ant-', false); return; }
-  localStorage.setItem('apk', k);
-  setKeyStatus('Key saved.', true);
+  if (!k.startsWith('sk-ant-')) { setKeyStatus('Should start with sk-ant-', false); return; }
+  localStorage.setItem('apk', k); setKeyStatus('Key saved.', true);
 }
 
 function getKey() { return document.getElementById('api-key').value.trim(); }
 
-function handleFile(e) {
-  const f = e.target.files[0]; if (!f) return;
-  if (!VALID_TYPES.includes(f.type)) { showErr('Unsupported file type: ' + f.type + '. Use JPEG, PNG, WebP, or GIF.'); return; }
-  mtype = f.type;
-  const r = new FileReader();
-  r.onload = ev => {
-    b64 = ev.target.result.split(',')[1];
-    document.getElementById('preview').src = ev.target.result;
-    document.getElementById('upload-section').style.display = 'none';
-    document.getElementById('preview-section').style.display = 'block';
-    clearOut();
-  };
-  r.onerror = () => showErr('Failed to read file.');
-  r.readAsDataURL(f);
-}
-
-function reset() {
-  b64 = null; mtype = 'image/jpeg';
-  document.getElementById('fi').value = '';
+function resetAll() {
+  items = [];
+  document.getElementById('queue').innerHTML = '';
+  document.getElementById('queue-section').style.display = 'none';
   document.getElementById('upload-section').style.display = 'block';
-  document.getElementById('preview-section').style.display = 'none';
-  clearOut();
+  document.getElementById('fi').value = '';
 }
 
-function clearOut() {
-  document.getElementById('out').innerHTML = '';
-  document.getElementById('status').style.display = 'none';
+async function handleFiles(e) {
+  const key = getKey();
+  if (!key || !key.startsWith('sk-ant-')) { alert('Save your API key first.'); return; }
+  const files = Array.from(e.target.files).slice(0, 20);
+  if (!files.length) return;
+
+  document.getElementById('upload-section').style.display = 'none';
+  document.getElementById('queue-section').style.display = 'block';
+
+  const reads = files.map(f => new Promise((res, rej) => {
+    if (!VALID.includes(f.type)) { rej(new Error('Unsupported type: ' + f.type)); return; }
+    const r = new FileReader();
+    r.onload = ev => res({ b64: ev.target.result.split(',')[1], mtype: f.type, src: ev.target.result });
+    r.onerror = () => rej(new Error('Read failed'));
+    r.readAsDataURL(f);
+  }));
+
+  const loaded = await Promise.allSettled(reads);
+  const queue = document.getElementById('queue');
+
+  loaded.forEach((result, i) => {
+    const id = 'item-' + Date.now() + '-' + i;
+    const card = document.createElement('div');
+    card.className = 'item-card'; card.id = id;
+    if (result.status === 'rejected') {
+      card.innerHTML = `<div class="card-top"><div class="card-info"><div class="card-name" style="color:#f08080">Error</div><div class="card-desc">${result.reason.message}</div></div></div>`;
+      queue.appendChild(card); return;
+    }
+    const { b64, mtype, src } = result.value;
+    card.innerHTML = `<div class="card-top">
+      <img class="card-thumb" src="${src}" alt="item">
+      <div class="card-info">
+        <div class="card-name"><span class="spinner"></span>Identifying...</div>
+        <div class="card-desc card-status">Please wait</div>
+      </div>
+    </div>`;
+    queue.appendChild(card);
+    items.push({ id, b64, mtype });
+    identifyItem(id, b64, mtype, key);
+  });
 }
 
-function setStatus(msg) {
-  const el = document.getElementById('status');
-  el.style.display = 'block';
-  el.innerHTML = '<span class="spinner"></span>' + msg;
-}
-
-function showErr(msg) {
-  document.getElementById('status').style.display = 'none';
-  document.getElementById('out').innerHTML = '<div class="err"><strong>Error</strong><br>' + msg + '</div>';
-}
-
-function extractJSON(raw) {
-  const start = raw.indexOf('{');
-  const end = raw.lastIndexOf('}');
-  if (start === -1 || end === -1) throw new Error('No JSON object found in response.');
-  return raw.slice(start, end + 1);
-}
-
-async function fetchWithTimeout(url, opts, ms) {
+async function fetchAPI(payload, key) {
   const ctrl = new AbortController();
-  const id = setTimeout(() => ctrl.abort(), ms);
+  const t = setTimeout(() => ctrl.abort(), TIMEOUT);
   try {
-    const r = await fetch(url, { ...opts, signal: ctrl.signal });
-    clearTimeout(id);
-    return r;
+    const r = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': key,
+        'anthropic-version': '2023-06-01',
+        'anthropic-dangerous-direct-browser-access': 'true'
+      },
+      body: JSON.stringify(payload),
+      signal: ctrl.signal
+    });
+    clearTimeout(t);
+    if (!r.ok) {
+      let eb = ''; try { const j = await r.json(); eb = j.error?.message || JSON.stringify(j); } catch {}
+      throw new Error('API ' + r.status + ': ' + eb);
+    }
+    return await r.json();
   } catch(e) {
-    clearTimeout(id);
-    if (e.name === 'AbortError') throw new Error('Request timed out after ' + (ms/1000) + 's. Try again.');
-    throw new Error('Network error: ' + e.message);
+    clearTimeout(t);
+    if (e.name === 'AbortError') throw new Error('Timed out. Try again.');
+    throw e;
   }
 }
 
-async function run() {
-  if (!b64) return;
+function extractJSON(raw) {
+  const s = raw.indexOf('{'), e = raw.lastIndexOf('}');
+  if (s === -1 || e === -1) throw new Error('No JSON in response');
+  return raw.slice(s, e + 1);
+}
+
+function safeURL(url) {
+  try { return url && (url.startsWith('http://') || url.startsWith('https://')) ? url : null; } catch { return null; }
+}
+
+async function identifyItem(id, b64, mtype, key) {
+  const card = document.getElementById(id);
+  try {
+    const data = await fetchAPI({
+      model: HAIKU,
+      max_tokens: 300,
+      system: `Identify the item centered in the foreground of this image. Ignore background, clutter, or environment entirely.
+Return ONLY raw JSON, no markdown:
+{"item_name":"brand + type + model/key specs if visible","description":"one sentence: what it is and primary use"}
+If unidentifiable, set item_name to "Unknown item" and description to "Could not identify."`,
+      messages: [{ role: 'user', content: [
+        { type: 'image', source: { type: 'base64', media_type: mtype, data: b64 } },
+        { type: 'text', text: 'Identify the foreground item. Return only JSON.' }
+      ]}]
+    }, key);
+
+    const txt = (data.content||[]).filter(x=>x.type==='text').map(x=>x.text).join('');
+    let d; try { d = JSON.parse(extractJSON(txt)); } catch { throw new Error('Parse failed'); }
+
+    const info = card.querySelector('.card-info');
+    info.innerHTML = `<div class="card-name">${d.item_name||'Unknown'}</div>
+      <div class="card-desc">${d.description||''}</div>`;
+    card.innerHTML += `<div class="card-body">
+      <button class="btn primary" style="margin-top:4px" onclick="getPrices('${id}','${b64.replace(/'/g,"\\'")}','${mtype}')">Get Prices</button>
+    </div>`;
+
+  } catch(err) {
+    const info = card.querySelector('.card-info');
+    info.innerHTML = `<div class="card-name" style="color:#f08080">Identification failed</div>
+      <div class="card-desc">${err.message}</div>`;
+  }
+}
+
+async function getPrices(id, b64, mtype) {
   const key = getKey();
-  if (!key) { showErr('Enter and save your Anthropic API key above first.'); return; }
-  if (!key.startsWith('sk-ant-')) { showErr('API key looks wrong — should start with sk-ant-'); return; }
+  const card = document.getElementById(id);
+  const body = card.querySelector('.card-body');
+  body.innerHTML = '<div style="padding:6px 0;font-size:13px;color:#888"><span class="spinner"></span>Searching prices...</div>';
 
-  const btn = document.getElementById('go-btn');
-  btn.disabled = true;
-  document.getElementById('reset-btn').disabled = true;
-  setStatus('Identifying item...');
-  document.getElementById('out').innerHTML = '';
+  const sys = `You are a resale pricing analyst. The item is centered in the foreground — ignore background entirely.
 
-  const sys = `You are a resale pricing analyst. The user sends you an image of an item.
-
-Your tasks:
-1. Identify the item precisely (brand, model, size, condition if visible).
-2. Use web_search to find current prices across retailers and resale markets.
-3. Assess resale potential on eBay and Facebook Marketplace.
-
-CRITICAL: Your entire response must be a single valid JSON object. No markdown. No code fences. No explanation. No text before or after the JSON. Start your response with { and end with }.
-
-JSON structure:
+Return ONLY raw JSON, no markdown, starting with { and ending with }:
 {
-  "item_name": "precise item name including brand and model if identifiable",
-  "description": "2-3 sentences: what it is, primary use, alternate uses relevant to resale value or buyer appeal",
-  "resale_analysis": "3-5 sentences: honest critical assessment of eBay and FB Marketplace resale potential. Cover: demand level, market saturation, typical buyer, best platform and why, red flags (oversupply, fakes, niche market, condition sensitivity, etc.)",
+  "item_name": "precise name",
+  "resale_analysis": "Factual only — no filler. Cover: best platform (eBay vs FB Marketplace) and why, demand level, market saturation, buyer profile, red flags if any. 2-3 tight sentences.",
   "resale_estimate": "$XX–$XX",
   "resale_vs_retail": "XX–XX% of retail",
   "tier1": [{"retailer":"","price":"","condition":"","url":""}],
@@ -202,98 +252,58 @@ JSON structure:
   "tier3": [{"retailer":"","price":"","condition":"","status":"","url":""}],
   "error": null
 }
-
-Tier definitions — follow exactly:
-- tier1: Items CURRENTLY IN STOCK at major retailers only (Amazon, Walmart, Home Depot, Lowes, Target, Costco, Best Buy, Menards). Must be purchasable right now. If out of stock, goes to tier3.
-- tier2: ACTIVE current listings only — eBay Buy It Now (not auctions, not sold) or active Facebook Marketplace posts. Must be purchasable right now.
-- tier3: SOLD, OUT OF STOCK, DISCONTINUED, or EXPIRED listings from any source — major retailers and secondary markets mixed. These are reference prices only.
-
-Rules:
-- Only include prices you actually found via web search.
-- Empty arrays are valid if nothing was found.
-- URLs must be real URLs from search results, not fabricated.
-- If item cannot be identified, set error to a short description and return empty arrays.`;
+Tier rules:
+- tier1: in-stock NOW — Amazon, Walmart, Home Depot, Lowes, Target, Costco, Best Buy, Menards only.
+- tier2: active Buy It Now eBay or active FB Marketplace posts. Purchasable right now only.
+- tier3: sold, OOS, discontinued, expired — any source mixed.
+Only include prices found via search. Empty arrays fine. URLs must be real.`;
 
   try {
-    setStatus('Searching current prices...');
-    const resp = await fetchWithTimeout("https://api.anthropic.com/v1/messages", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "x-api-key": key,
-        "anthropic-version": "2023-06-01",
-        "anthropic-dangerous-direct-browser-access": "true"
-      },
-      body: JSON.stringify({
-        model: MODEL,
-        max_tokens: 4096,
-        system: sys,
-        tools: [{ type: "web_search_20250305", name: "web_search" }],
-        messages: [{
-          role: "user",
-          content: [
-            { type: "image", source: { type: "base64", media_type: mtype, data: b64 } },
-            { type: "text", text: "Analyze this item. Respond with only the JSON object." }
-          ]
-        }]
-      })
-    }, TIMEOUT_MS);
+    const data = await fetchAPI({
+      model: SONNET,
+      max_tokens: 4096,
+      system: sys,
+      tools: [{ type: 'web_search_20250305', name: 'web_search' }],
+      messages: [{ role: 'user', content: [
+        { type: 'image', source: { type: 'base64', media_type: mtype, data: b64 } },
+        { type: 'text', text: 'Find current prices for this item. Return only the JSON.' }
+      ]}]
+    }, key);
 
-    if (!resp.ok) {
-      let eb = '';
-      try { const j = await resp.json(); eb = j.error?.message || JSON.stringify(j); } catch {}
-      throw new Error('API ' + resp.status + ': ' + eb);
-    }
+    const txt = (data.content||[]).filter(x=>x.type==='text').map(x=>x.text).join('');
+    if (!txt) throw new Error('No text response. Try again.');
+    let d; try { d = JSON.parse(extractJSON(txt)); } catch(pe) { throw new Error('Parse failed: ' + pe.message); }
 
-    const data = await resp.json();
-    if (data.error) throw new Error('API error: ' + (data.error.message || JSON.stringify(data.error)));
-
-    const txt = (data.content || []).filter(x => x.type === 'text').map(x => x.text).join('');
-    if (!txt) throw new Error('No text response returned from API. The model may have only returned tool results. Try again.');
-
-    let d;
-    try { d = JSON.parse(extractJSON(txt)); }
-    catch(pe) { throw new Error('Failed to parse response: ' + pe.message + '\n\nRaw: ' + txt.slice(0, 500)); }
-
-    clearOut();
-    render(d);
+    renderPrices(body, d);
   } catch(err) {
-    showErr(err.message);
+    body.innerHTML = `<div class="err-inline">${err.message}</div>
+      <button class="btn small" style="margin-top:6px" onclick="getPrices('${id}','${b64.replace(/'/g,"\\'")}','${mtype}')">Retry</button>`;
   }
-
-  btn.disabled = false;
-  document.getElementById('reset-btn').disabled = false;
-  btn.textContent = '🔍 Analyze Item';
-}
-
-function safeURL(url) {
-  try { return url && (url.startsWith('http://') || url.startsWith('https://')) ? url : null; }
-  catch { return null; }
 }
 
 function row(p, t3) {
   const url = safeURL(p.url);
-  return '<div class="price-row' + (t3 ? ' t3' : '') + '">' +
-    '<div><div class="rname">' + (p.retailer||'Unknown') + '</div>' +
-    '<div class="rsub">' + (p.condition||'') + (t3 && p.status ? ' — ' + p.status : '') + '</div></div>' +
+  return '<div class="price-row' + (t3?' t3':'') + '">' +
+    '<div><div class="rname">' + (p.retailer||'?') + '</div>' +
+    '<div class="rsub">' + (p.condition||'') + (t3&&p.status?' — '+p.status:'') + '</div></div>' +
     '<div style="text-align:right"><div class="ramt">' + (p.price||'—') + '</div>' +
-    (url ? '<a class="rlink" href="' + url + '" target="_blank" rel="noopener">view &rarr;</a>' : '') +
+    (url?'<a class="rlink" href="'+url+'" target="_blank" rel="noopener">view &rarr;</a>':'') +
     '</div></div>';
 }
 
-function render(d) {
-  if (d.error) { showErr(d.error); return; }
-  let h = '<p class="item-title">' + (d.item_name||'Unknown item') + '</p>';
-  h += '<div class="label">Description & Use</div><div class="box">' + (d.description||'—') + '</div>';
-  h += '<div class="label">Resale Estimate</div><div class="box"><div class="resale-num">' + (d.resale_estimate||'—') + '</div><div class="resale-pct">' + (d.resale_vs_retail||'') + '</div></div>';
-  h += '<div class="label">Resale Market Analysis</div><div class="box">' + (d.resale_analysis||'—') + '</div>';
-  h += '<div class="label">Tier 1 — Major Retailers (in stock)</div>';
+function renderPrices(container, d) {
+  if (d.error) { container.innerHTML = '<div class="err-inline">' + d.error + '</div>'; return; }
+  let h = '';
+  h += '<div class="label" style="margin-top:10px">Resale Estimate</div>';
+  h += '<div class="box"><div class="resale-num">' + (d.resale_estimate||'—') + '</div><div class="resale-pct">' + (d.resale_vs_retail||'') + '</div></div>';
+  h += '<div class="label">Resale Analysis</div><div class="box">' + (d.resale_analysis||'—') + '</div>';
+  h += '<div class="label">Tier 1 — Major Retailers</div>';
   d.tier1?.length ? d.tier1.forEach(p=>h+=row(p,false)) : (h+='<p class="none">None found</p>');
-  h += '<div class="label">Tier 2 — Secondary Market (active listings)</div>';
+  h += '<div class="label">Tier 2 — Active Listings</div>';
   d.tier2?.length ? d.tier2.forEach(p=>h+=row(p,false)) : (h+='<p class="none">None found</p>');
-  h += '<div class="label">Tier 3 — Sold / Unavailable (reference only)</div>';
+  h += '<div class="label">Tier 3 — Sold / Unavailable</div>';
   d.tier3?.length ? d.tier3.forEach(p=>h+=row(p,true)) : (h+='<p class="none">None found</p>');
-  document.getElementById('out').innerHTML = h;
+  container.innerHTML = h;
 }
 </script>
 </body>
