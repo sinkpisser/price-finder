@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Price Finder</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: system-ui, sans-serif; background: #111; color: #eee; max-width: 640px; margin: 0 auto; padding: 1rem; }
+  h1 { font-size: 16px; font-weight: 600; margin-bottom: 1rem; color: #fff; }
+  input[type="password"], input[type="text"] { width: 100%; padding: 8px 10px; background: #222; border: 1px solid #333; border-radius: 6px; color: #eee; font-size: 13px; margin-bottom: 8px; }
+  input[type="password"]:focus, input[type="text"]:focus { outline: none; border-color: #555; }
+  button { padding: 9px 16px; background: #222; border: 1px solid #444; border-radius: 6px; color: #eee; font-size: 13px; cursor: pointer; }
+  button:hover { background: #2a2a2a; border-color: #666; }
+  button:disabled { opacity: 0.4; cursor: not-allowed; }
+  button.primary { background: #1a3a5c; border-color: #2a5a8c; color: #8cc8ff; width: 100%; margin-top: 0.5rem; }
+  button.primary:hover:not(:disabled) { background: #1e4570; }
+  button.full { width: 100%; margin-top: 0.5rem; }
+  #upload-area { border: 1px dashed #444; border-radius: 8px; padding: 2rem 1rem; text-align: center; cursor: pointer; background: #181818; margin-bottom: 0.75rem; }
+  #upload-area:hover { border-color: #666; }
+  #upload-area p { font-size: 13px; color: #888; margin-top: 6px; }
+  #preview { max-width: 100%; border-radius: 6px; display: block; margin-bottom: 0.5rem; }
+  .label { font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #666; margin: 1.25rem 0 6px; }
+  .box { background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 6px; padding: 10px 12px; font-size: 13px; line-height: 1.65; color: #ccc; }
+  .price-row { display: flex; justify-content: space-between; align-items: flex-start; padding: 8px 12px; background: #1a1a1a; border: 1px solid #2a2a2a; border-radius: 6px; margin-bottom: 5px; font-size: 13px; }
+  .price-row .rname { font-weight: 600; color: #eee; }
+  .price-row .rsub { font-size: 11px; color: #666; margin-top: 2px; }
+  .price-row .ramt { font-weight: 600; color: #eee; text-align: right; }
+  .price-row .rlink { font-size: 11px; color: #5a9fd4; text-decoration: none; display: block; margin-top: 2px; }
+  .price-row.t3 { opacity: 0.55; }
+  .price-row.t3 .ramt { text-decoration: line-through; color: #666; }
+  .resale-num { font-size: 22px; font-weight: 700; color: #8cc8ff; }
+  .resale-pct { font-size: 12px; color: #888; margin-top: 3px; }
+  #status { font-size: 13px; color: #888; padding: 0.5rem 0; text-align: center; }
+  #err-box { background: #2a1010; border: 1px solid #5a2020; border-radius: 6px; padding: 10px 12px; font-size: 12px; color: #f08080; line-height: 1.6; margin-top: 0.75rem; word-break: break-all; }
+  .item-title { font-size: 16px; font-weight: 600; color: #fff; margin: 1rem 0 0.25rem; }
+  #key-section { margin-bottom: 1.25rem; padding-bottom: 1.25rem; border-bottom: 1px solid #222; }
+  #key-section small { font-size: 11px; color: #666; display: block; margin-top: 4px; }
+  .key-row { display: flex; gap: 8px; align-items: center; }
+  .key-row input { margin-bottom: 0; flex: 1; }
+  .none { font-size: 12px; color: #555; padding: 4px 0; }
+</style>
+</head>
+<body>
+
+<h1>Price Finder</h1>
+
+<div id="key-section">
+  <div class="label">Anthropic API Key</div>
+  <div class="key-row">
+    <input type="password" id="api-key" placeholder="sk-ant-...">
+    <button onclick="saveKey()">Save</button>
+  </div>
+  <small id="key-status">No key saved.</small>
+</div>
+
+<div id="upload-section">
+  <div id="upload-area" onclick="document.getElementById('fi').click()">
+    <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" style="margin:0 auto;display:block"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+    <p>Click to select image (JPEG, PNG, WebP, GIF)</p>
+  </div>
+  <input type="file" id="fi" accept="image/jpeg,image/png,image/webp,image/gif" style="display:none" onchange="handleFile(event)">
+</div>
+
+<div id="preview-section" style="display:none">
+  <img id="preview" alt="item">
+  <button class="primary" id="go-btn" onclick="run()">&#128269; Analyze</button>
+  <button class="full" onclick="reset()">&#8635; New Image</button>
+</div>
+
+<div id="status" style="display:none"></div>
+<div id="err-box" style="display:none"></div>
+<div id="out"></div>
+
+<script>
+let b64 = null, mtype = 'image/jpeg';
+
+// load saved key
+window.addEventListener('load', () => {
+  const k = localStorage.getItem('apk');
+  if (k) {
+    document.getElementById('api-key').value = k;
+    document.getElementById('key-status').textContent = 'Key loaded from storage.';
+  }
+});
+
+function saveKey() {
+  const k = document.getElementById('api-key').value.trim();
+  if (!k) return;
+  localStorage.setItem('apk', k);
+  document.getElementById('key-status').textContent = 'Key saved.';
+}
+
+function getKey() { return document.getElementById('api-key').value.trim(); }
+
+function handleFile(e) {
+  const f = e.target.files[0]; if (!f) return;
+  mtype = f.type || 'image/jpeg';
+  const r = new FileReader();
+  r.onload = ev => {
+    b64 = ev.target.result.split(',')[1];
+    document.getElementById('preview').src = ev.target.result;
+    document.getElementById('upload-section').style.display = 'none';
+    document.getElementById('preview-section').style.display = 'block';
+    document.getElementById('out').innerHTML = '';
+    document.getElementById('err-box').style.display = 'none';
+    document.getElementById('status').style.display = 'none';
+  };
+  r.readAsDataURL(f);
+}
+
+function reset() {
+  b64 = null;
+  document.getElementById('fi').value = '';
+  document.getElementById('upload-section').style.display = 'block';
+  document.getElementById('preview-section').style.display = 'none';
+  document.getElementById('out').innerHTML = '';
+  document.getElementById('err-box').style.display = 'none';
+  document.getElementById('status').style.display = 'none';
+}
+
+function showErr(msg) {
+  const b = document.getElementById('err-box');
+  b.style.display = 'block';
+  b.textContent = msg;
+}
+
+async function run() {
+  if (!b64) return;
+  const key = getKey();
+  if (!key) { showErr('Paste your Anthropic API key above first.'); return; }
+
+  const btn = document.getElementById('go-btn');
+  const status = document.getElementById('status');
+  const out = document.getElementById('out');
+  document.getElementById('err-box').style.display = 'none';
+  btn.disabled = true; btn.textContent = 'Analyzing...';
+  status.style.display = 'block'; status.textContent = 'Identifying item and searching prices...';
+  out.innerHTML = '';
+
+  const sys = `You are a resale pricing analyst. Given an image:
+1. Identify the item as specifically as possible (brand, model, condition if visible).
+2. Web search for current prices across retailers and markets.
+3. Return ONLY raw JSON — no markdown fences, no preamble:
+{
+  "item_name": "specific item name",
+  "description": "2-3 sentences: what it is, primary application, alternate uses relevant to resale value or buyer appeal",
+  "resale_analysis": "3-5 sentences: critical honest assessment of eBay and FB Marketplace resale potential — demand level, market saturation, typical buyer profile, best platform and why, red flags (fakes, oversupply, niche market, etc.)",
+  "resale_estimate": "$XX–$XX",
+  "resale_vs_retail": "e.g. 40–55% of retail",
+  "tier1": [{"retailer":"","price":"","condition":"","url":""}],
+  "tier2": [{"retailer":"","price":"","condition":"","url":""}],
+  "tier3": [{"retailer":"","price":"","condition":"","status":"Sold/OOS/Discontinued","url":""}],
+  "error": null
+}
+Tier rules:
+- tier1: in-stock NOW at major retailers (Amazon, Walmart, Home Depot, Lowes, Target, Costco, Best Buy, Menards). Currently purchasable only.
+- tier2: active Buy It Now eBay listings or active FB Marketplace posts. Currently purchasable only.
+- tier3: sold, out-of-stock, discontinued, expired — any source (major or secondary mixed).
+Only include prices found via search. Empty arrays fine.`;
+
+  try {
+    let resp;
+    try {
+      resp = await fetch("https://api.anthropic.com/v1/messages", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-api-key": key,
+          "anthropic-version": "2023-06-01",
+          "anthropic-dangerous-direct-browser-access": "true"
+        },
+        body: JSON.stringify({
+          model: "claude-sonnet-4-5-20251001",
+          max_tokens: 1500,
+          system: sys,
+          tools: [{ type: "web_search_20250305", name: "web_search" }],
+          messages: [{
+            role: "user",
+            content: [
+              { type: "image", source: { type: "base64", media_type: mtype, data: b64 } },
+              { type: "text", text: "Analyze this item. Return only the JSON." }
+            ]
+          }]
+        })
+      });
+    } catch(fe) { throw new Error("Network error: " + fe.message); }
+
+    if (!resp.ok) {
+      let eb = '';
+      try { const j = await resp.json(); eb = JSON.stringify(j); } catch {}
+      throw new Error("API " + resp.status + ": " + eb);
+    }
+
+    const data = await resp.json();
+    if (data.error) throw new Error("API error: " + JSON.stringify(data.error));
+
+    const txt = data.content.map(x => x.type === 'text' ? x.text : '').join('');
+    const clean = txt.replace(/```json|```/g, '').trim();
+    let d;
+    try { d = JSON.parse(clean); }
+    catch(pe) { throw new Error("Parse failed: " + pe.message + "\nResponse: " + clean.slice(0, 400)); }
+
+    status.style.display = 'none';
+    render(d);
+  } catch(err) {
+    status.style.display = 'none';
+    showErr(err.message);
+  }
+
+  btn.disabled = false;
+  btn.textContent = '🔍 Analyze';
+}
+
+function row(p, t3) {
+  return `<div class="price-row${t3?' t3':''}">
+    <div>
+      <div class="rname">${p.retailer}</div>
+      <div class="rsub">${p.condition||''}${t3&&p.status?' — '+p.status:''}</div>
+    </div>
+    <div style="text-align:right">
+      <div class="ramt">${p.price}</div>
+      ${p.url?`<a class="rlink" href="${p.url}" target="_blank">view &rarr;</a>`:''}
+    </div>
+  </div>`;
+}
+
+function render(d) {
+  if (d.error) { showErr(d.error); return; }
+  let h = `<p class="item-title">${d.item_name||'Unknown'}</p>`;
+  h += `<div class="label">Description & Use</div><div class="box">${d.description||'—'}</div>`;
+  h += `<div class="label">Resale Estimate</div><div class="box"><div class="resale-num">${d.resale_estimate||'—'}</div><div class="resale-pct">${d.resale_vs_retail||''}</div></div>`;
+  h += `<div class="label">Resale Market Analysis</div><div class="box">${d.resale_analysis||'—'}</div>`;
+  h += `<div class="label">Tier 1 — Major Retailers (in stock)</div>`;
+  if (d.tier1?.length) d.tier1.forEach(p=>h+=row(p,false));
+  else h+=`<p class="none">None found</p>`;
+  h += `<div class="label">Tier 2 — Secondary Market (active)</div>`;
+  if (d.tier2?.length) d.tier2.forEach(p=>h+=row(p,false));
+  else h+=`<p class="none">None found</p>`;
+  h += `<div class="label">Tier 3 — Sold / Unavailable (reference)</div>`;
+  if (d.tier3?.length) d.tier3.forEach(p=>h+=row(p,true));
+  else h+=`<p class="none">None found</p>`;
+  document.getElementById('out').innerHTML = h;
+}
+</script>
+</body>
+</html>
