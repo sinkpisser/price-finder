@@ -8,50 +8,53 @@
 *{box-sizing:border-box;margin:0;padding:0}
 body{font-family:system-ui,sans-serif;background:#111;color:#eee;max-width:640px;margin:0 auto;padding:1rem;min-height:100vh}
 h1{font-size:16px;font-weight:600;margin-bottom:1rem;color:#fff}
-input[type="password"]{width:100%;padding:10px;background:#1e1e1e;border:1px solid #333;border-radius:6px;color:#eee;font-size:14px;margin-bottom:6px}
-input[type="password"]:focus{outline:none;border-color:#555}
+input[type="password"],input[type="text"]{width:100%;padding:10px;background:#1e1e1e;border:1px solid #333;border-radius:6px;color:#eee;font-size:14px}
+input:focus{outline:none;border-color:#555}
 .btn{display:block;width:100%;padding:12px;background:#1e1e1e;border:1px solid #444;border-radius:6px;color:#eee;font-size:14px;cursor:pointer;text-align:center;margin-top:8px;min-height:44px}
 .btn:hover:not(:disabled){background:#2a2a2a;border-color:#666}
 .btn:disabled{opacity:0.4;cursor:not-allowed}
 .btn.primary{background:#1a3a5c;border-color:#2a5a8c;color:#8cc8ff}
 .btn.primary:hover:not(:disabled){background:#1e4570}
-.btn.small{padding:8px 14px;width:auto;display:inline-block;font-size:13px;min-height:36px}
-.btn.danger{background:#2a1010;border-color:#5a2020;color:#f08080}
-.btn.danger:hover:not(:disabled){background:#331515}
+.btn.sm{padding:7px 12px;width:auto;display:inline-block;font-size:12px;min-height:36px;margin-top:0}
+.btn.danger{background:#2a1010;border-color:#5a2020;color:#f08080;width:auto}
 #upload-area{border:1px dashed #444;border-radius:8px;padding:2.5rem 1rem;text-align:center;cursor:pointer;background:#181818;transition:border-color 0.15s}
 #upload-area:hover{border-color:#666}
 #upload-area svg{display:block;margin:0 auto 8px}
 #upload-area p{font-size:13px;color:#888;margin-top:4px}
-.label{font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#666;margin:1.25rem 0 6px}
+.label{font-size:10px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;color:#666;margin:1.1rem 0 5px}
 .box{background:#1a1a1a;border:1px solid #2a2a2a;border-radius:6px;padding:10px 12px;font-size:13px;line-height:1.65;color:#ccc}
 .price-row{display:flex;justify-content:space-between;align-items:flex-start;padding:9px 12px;background:#1a1a1a;border:1px solid #2a2a2a;border-radius:6px;margin-bottom:5px;font-size:13px}
-.rname{font-weight:600;color:#eee}
-.rsub{font-size:11px;color:#666;margin-top:2px}
+.rname{font-weight:600;color:#eee}.rsub{font-size:11px;color:#666;margin-top:2px}
 .ramt{font-weight:600;color:#eee;text-align:right}
 .rlink{font-size:11px;color:#5a9fd4;text-decoration:none;display:block;margin-top:2px}
-.t3{opacity:0.55}
-.t3 .ramt{text-decoration:line-through;color:#666}
+.t3{opacity:0.55}.t3 .ramt{text-decoration:line-through;color:#666}
 .resale-num{font-size:20px;font-weight:700;color:#8cc8ff}
 .resale-pct{font-size:12px;color:#888;margin-top:2px}
 .none{font-size:12px;color:#555;padding:3px 0}
 .spinner{display:inline-block;width:13px;height:13px;border:2px solid #444;border-top-color:#888;border-radius:50%;animation:spin 0.7s linear infinite;vertical-align:middle;margin-right:6px}
 @keyframes spin{to{transform:rotate(360deg)}}
 .key-row{display:flex;gap:8px;align-items:center}
-.key-row input{margin-bottom:0;flex:1}
+.key-row input{flex:1}
 .key-status{font-size:11px;color:#666;margin-top:4px}
 .key-status.ok{color:#4a9}
 #key-section{margin-bottom:1.25rem;padding-bottom:1.25rem;border-bottom:1px solid #222}
 .item-card{background:#181818;border:1px solid #2a2a2a;border-radius:8px;margin-bottom:10px;overflow:hidden}
-.card-top{display:flex;gap:12px;padding:12px}
+.card-top{display:flex;gap:12px;padding:12px;align-items:flex-start}
 .card-thumb{width:72px;height:72px;object-fit:cover;border-radius:5px;flex-shrink:0;background:#222}
 .card-info{flex:1;min-width:0}
 .card-name{font-size:14px;font-weight:600;color:#fff;margin-bottom:3px;line-height:1.3}
 .card-desc{font-size:12px;color:#888;line-height:1.5}
-.card-status{font-size:12px;color:#666;font-style:italic}
 .card-body{padding:0 12px 12px}
+.flag{display:inline-flex;align-items:center;gap:5px;padding:4px 9px;background:#2a1f0a;border:1px solid #6b4c1a;border-radius:4px;color:#d4900a;font-size:11px;font-weight:600;margin:4px 0 8px}
+.link-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px;margin-bottom:2px}
+.link-btn{display:inline-block;padding:5px 11px;background:#1a1a1a;border:1px solid #333;border-radius:4px;color:#5a9fd4;font-size:12px;text-decoration:none}
+.link-btn:hover{background:#222;border-color:#555}
 .err-inline{font-size:12px;color:#f08080;padding:6px 0}
-#batch-controls{display:flex;gap:8px;margin-bottom:1rem}
-#batch-controls .btn{margin-top:0}
+.extra-imgs{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.extra-thumb{width:52px;height:52px;object-fit:cover;border-radius:4px;border:1px solid #333}
+.reid-section{background:#1a1a0f;border:1px solid #3a3010;border-radius:6px;padding:10px;margin-bottom:8px}
+.reid-section .label{margin-top:0}
+#batch-bar{display:flex;gap:8px;margin-bottom:1rem;align-items:center}
 </style>
 </head>
 <body>
@@ -62,7 +65,7 @@ input[type="password"]:focus{outline:none;border-color:#555}
   <div class="label">Anthropic API Key</div>
   <div class="key-row">
     <input type="password" id="api-key" placeholder="sk-ant-...">
-    <button class="btn small" onclick="saveKey()">Save</button>
+    <button class="btn sm" onclick="saveKey()">Save</button>
   </div>
   <p class="key-status" id="key-status">No key saved.</p>
 </div>
@@ -70,9 +73,7 @@ input[type="password"]:focus{outline:none;border-color:#555}
 <div id="upload-section">
   <div id="upload-area" onclick="document.getElementById('fi').click()">
     <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#555" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-      <rect x="3" y="3" width="18" height="18" rx="2"/>
-      <circle cx="8.5" cy="8.5" r="1.5"/>
-      <polyline points="21 15 16 10 5 21"/>
+      <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/>
     </svg>
     <p>Select up to 20 images</p>
     <p style="font-size:11px;margin-top:4px;color:#555">JPEG · PNG · WebP · GIF</p>
@@ -81,8 +82,8 @@ input[type="password"]:focus{outline:none;border-color:#555}
 </div>
 
 <div id="queue-section" style="display:none">
-  <div id="batch-controls">
-    <button class="btn danger small" onclick="resetAll()" style="width:auto">&#8635; Clear All</button>
+  <div id="batch-bar">
+    <button class="btn danger sm" onclick="resetAll()">&#8635; Clear All</button>
   </div>
   <div id="queue"></div>
 </div>
@@ -92,7 +93,18 @@ const VALID = ['image/jpeg','image/png','image/webp','image/gif'];
 const HAIKU = 'claude-haiku-4-5-20251001';
 const SONNET = 'claude-sonnet-4-6';
 const TIMEOUT = 90000;
-let items = [];
+const store = {};
+
+const HAIKU_SYS = `Identify the item centered in the foreground. Ignore background, clutter, and environment entirely.
+Return ONLY raw JSON, no markdown:
+{
+  "item_name": "brand + type + model/key specs if visible. If brand is uncertain write 'Unbranded' or 'Brand unknown'.",
+  "description": "one sentence: what it is and primary use",
+  "confident": true or false,
+  "unknown_aspects": "comma-separated list of what could not be confirmed e.g. brand, model number, year — empty string if confident"
+}
+Set confident to false if brand OR model is unconfirmed or item is generic/unbranded.
+Set confident to true only when brand AND item type are clearly and specifically identifiable from the image.`;
 
 window.addEventListener('load', () => {
   const k = localStorage.getItem('apk');
@@ -113,7 +125,7 @@ function saveKey() {
 function getKey() { return document.getElementById('api-key').value.trim(); }
 
 function resetAll() {
-  items = [];
+  Object.keys(store).forEach(k => delete store[k]);
   document.getElementById('queue').innerHTML = '';
   document.getElementById('queue-section').style.display = 'none';
   document.getElementById('upload-section').style.display = 'block';
@@ -125,12 +137,11 @@ async function handleFiles(e) {
   if (!key || !key.startsWith('sk-ant-')) { alert('Save your API key first.'); return; }
   const files = Array.from(e.target.files).slice(0, 20);
   if (!files.length) return;
-
   document.getElementById('upload-section').style.display = 'none';
   document.getElementById('queue-section').style.display = 'block';
 
   const reads = files.map(f => new Promise((res, rej) => {
-    if (!VALID.includes(f.type)) { rej(new Error('Unsupported type: ' + f.type)); return; }
+    if (!VALID.includes(f.type)) { rej(new Error('Unsupported: ' + f.type)); return; }
     const r = new FileReader();
     r.onload = ev => res({ b64: ev.target.result.split(',')[1], mtype: f.type, src: ev.target.result });
     r.onerror = () => rej(new Error('Read failed'));
@@ -149,16 +160,16 @@ async function handleFiles(e) {
       queue.appendChild(card); return;
     }
     const { b64, mtype, src } = result.value;
+    store[id] = { b64, mtype, src, extraImages: [], keywords: '' };
     card.innerHTML = `<div class="card-top">
       <img class="card-thumb" src="${src}" alt="item">
       <div class="card-info">
         <div class="card-name"><span class="spinner"></span>Identifying...</div>
-        <div class="card-desc card-status">Please wait</div>
+        <div class="card-desc" style="color:#666;font-style:italic">Please wait</div>
       </div>
     </div>`;
     queue.appendChild(card);
-    items.push({ id, b64, mtype });
-    identifyItem(id, b64, mtype, key);
+    identifyItem(id, key);
   });
 }
 
@@ -200,18 +211,66 @@ function safeURL(url) {
   try { return url && (url.startsWith('http://') || url.startsWith('https://')) ? url : null; } catch { return null; }
 }
 
-async function identifyItem(id, b64, mtype, key) {
+function buildSearchLinks(name) {
+  const q = encodeURIComponent(name);
+  return {
+    ebay: `https://www.ebay.com/sch/i.html?_nkw=${q}`,
+    google: `https://www.google.com/search?q=${q}&tbm=shop`,
+    fb: `https://www.facebook.com/marketplace/search/?query=${q}`
+  };
+}
+
+function renderCardIdentified(id) {
+  const item = store[id];
+  const card = document.getElementById(id);
+  const links = buildSearchLinks(item.name);
+  const info = card.querySelector('.card-info');
+  info.innerHTML = `<div class="card-name">${item.name}</div><div class="card-desc">${item.description}</div>`;
+
+  let bodyHTML = '';
+
+  if (!item.confident) {
+    bodyHTML += `<div class="flag">&#9888; Partial ID${item.unknownAspects ? ' — ' + item.unknownAspects : ''}</div>`;
+    bodyHTML += `<div class="reid-section">
+      <div class="label">Help with identification</div>
+      <input type="text" id="kw-${id}" placeholder="Add keywords: brand, model, color, markings..." style="margin-bottom:8px" value="${item.keywords}">
+      <div class="extra-imgs" id="extraImgs-${id}">
+        ${(item.extraImages||[]).map(img=>`<img class="extra-thumb" src="${img.src}" alt="">`).join('')}
+      </div>
+      <input type="file" id="extraFi-${id}" accept="image/jpeg,image/png,image/webp,image/gif" multiple style="display:none" onchange="addExtraImages('${id}',event)">
+      <div style="display:flex;gap:8px;margin-top:8px">
+        <button class="btn sm" onclick="document.getElementById('extraFi-${id}').click()">+ Images</button>
+        <button class="btn sm primary" onclick="reidentify('${id}')">Re-identify</button>
+      </div>
+    </div>`;
+  }
+
+  bodyHTML += `<div class="link-row">
+    <a class="link-btn" href="${links.ebay}" target="_blank" rel="noopener">eBay</a>
+    <a class="link-btn" href="${links.google}" target="_blank" rel="noopener">Google Shopping</a>
+    <a class="link-btn" href="${links.fb}" target="_blank" rel="noopener">FB Marketplace</a>
+  </div>`;
+  bodyHTML += `<button class="btn primary" id="gp-${id}" onclick="getPrices('${id}')">Get Prices</button>`;
+
+  let body = card.querySelector('.card-body');
+  if (!body) {
+    body = document.createElement('div');
+    body.className = 'card-body';
+    card.appendChild(body);
+  }
+  body.innerHTML = bodyHTML;
+}
+
+async function identifyItem(id, key) {
+  const item = store[id];
   const card = document.getElementById(id);
   try {
     const data = await fetchAPI({
       model: HAIKU,
       max_tokens: 300,
-      system: `Identify the item centered in the foreground of this image. Ignore background, clutter, or environment entirely.
-Return ONLY raw JSON, no markdown:
-{"item_name":"brand + type + model/key specs if visible","description":"one sentence: what it is and primary use"}
-If unidentifiable, set item_name to "Unknown item" and description to "Could not identify."`,
+      system: HAIKU_SYS,
       messages: [{ role: 'user', content: [
-        { type: 'image', source: { type: 'base64', media_type: mtype, data: b64 } },
+        { type: 'image', source: { type: 'base64', media_type: item.mtype, data: item.b64 } },
         { type: 'text', text: 'Identify the foreground item. Return only JSON.' }
       ]}]
     }, key);
@@ -219,32 +278,80 @@ If unidentifiable, set item_name to "Unknown item" and description to "Could not
     const txt = (data.content||[]).filter(x=>x.type==='text').map(x=>x.text).join('');
     let d; try { d = JSON.parse(extractJSON(txt)); } catch { throw new Error('Parse failed'); }
 
-    const info = card.querySelector('.card-info');
-    info.innerHTML = `<div class="card-name">${d.item_name||'Unknown'}</div>
-      <div class="card-desc">${d.description||''}</div>`;
-    card.innerHTML += `<div class="card-body">
-      <button class="btn primary" style="margin-top:4px" onclick="getPrices('${id}','${b64.replace(/'/g,"\\'")}','${mtype}')">Get Prices</button>
-    </div>`;
-
+    store[id].name = d.item_name || 'Unknown item';
+    store[id].description = d.description || '';
+    store[id].confident = !!d.confident;
+    store[id].unknownAspects = d.unknown_aspects || '';
+    renderCardIdentified(id);
   } catch(err) {
     const info = card.querySelector('.card-info');
-    info.innerHTML = `<div class="card-name" style="color:#f08080">Identification failed</div>
-      <div class="card-desc">${err.message}</div>`;
+    info.innerHTML = `<div class="card-name" style="color:#f08080">Identification failed</div><div class="card-desc">${err.message}</div>`;
   }
 }
 
-async function getPrices(id, b64, mtype) {
+async function addExtraImages(id, e) {
+  const files = Array.from(e.target.files).slice(0, 3 - (store[id].extraImages||[]).length);
+  const reads = files.filter(f=>VALID.includes(f.type)).map(f => new Promise((res,rej) => {
+    const r = new FileReader();
+    r.onload = ev => res({ b64: ev.target.result.split(',')[1], mtype: f.type, src: ev.target.result });
+    r.onerror = ()=>rej();
+    r.readAsDataURL(f);
+  }));
+  const results = await Promise.allSettled(reads);
+  results.forEach(r => { if (r.status==='fulfilled') store[id].extraImages.push(r.value); });
+  const container = document.getElementById('extraImgs-' + id);
+  if (container) container.innerHTML = store[id].extraImages.map(img=>`<img class="extra-thumb" src="${img.src}" alt="">`).join('');
+  e.target.value = '';
+}
+
+async function reidentify(id) {
+  const item = store[id];
   const key = getKey();
   const card = document.getElementById(id);
+  const info = card.querySelector('.card-info');
   const body = card.querySelector('.card-body');
-  body.innerHTML = '<div style="padding:6px 0;font-size:13px;color:#888"><span class="spinner"></span>Searching prices...</div>';
+
+  const kwInput = document.getElementById('kw-' + id);
+  if (kwInput) store[id].keywords = kwInput.value.trim();
+
+  info.innerHTML = '<div class="card-name"><span class="spinner"></span>Re-identifying...</div><div class="card-desc" style="color:#666;font-style:italic">Adding context...</div>';
+  body.innerHTML = '';
+
+  const content = [
+    { type: 'image', source: { type: 'base64', media_type: item.mtype, data: item.b64 } }
+  ];
+  (item.extraImages||[]).forEach(img => {
+    content.push({ type: 'image', source: { type: 'base64', media_type: img.mtype, data: img.b64 } });
+  });
+  const kwText = item.keywords ? `Additional context from user: "${item.keywords}". ` : '';
+  content.push({ type: 'text', text: `${kwText}Identify the foreground item in the first image. Use all images and context provided. Return only JSON.` });
+
+  try {
+    const data = await fetchAPI({ model: HAIKU, max_tokens: 300, system: HAIKU_SYS, messages: [{ role: 'user', content }] }, key);
+    const txt = (data.content||[]).filter(x=>x.type==='text').map(x=>x.text).join('');
+    let d; try { d = JSON.parse(extractJSON(txt)); } catch { throw new Error('Parse failed'); }
+    store[id].name = d.item_name || store[id].name;
+    store[id].description = d.description || store[id].description;
+    store[id].confident = !!d.confident;
+    store[id].unknownAspects = d.unknown_aspects || '';
+    renderCardIdentified(id);
+  } catch(err) {
+    info.innerHTML = `<div class="card-name" style="color:#f08080">Re-identification failed</div><div class="card-desc">${err.message}</div>`;
+  }
+}
+
+async function getPrices(id) {
+  const item = store[id];
+  const key = getKey();
+  const body = document.getElementById(id).querySelector('.card-body');
+  const btn = document.getElementById('gp-' + id);
+  if (btn) { btn.disabled = true; btn.textContent = 'Searching prices...'; }
 
   const sys = `You are a resale pricing analyst. The item is centered in the foreground — ignore background entirely.
-
-Return ONLY raw JSON, no markdown, starting with { and ending with }:
+Return ONLY raw JSON starting with { and ending with }:
 {
   "item_name": "precise name",
-  "resale_analysis": "Factual only — no filler. Cover: best platform (eBay vs FB Marketplace) and why, demand level, market saturation, buyer profile, red flags if any. 2-3 tight sentences.",
+  "resale_analysis": "Factual only, no filler. Best platform (eBay vs FB) and why, demand, saturation, buyer profile, red flags. 2-3 tight sentences.",
   "resale_estimate": "$XX–$XX",
   "resale_vs_retail": "XX–XX% of retail",
   "tier1": [{"retailer":"","price":"","condition":"","url":""}],
@@ -258,26 +365,31 @@ Tier rules:
 - tier3: sold, OOS, discontinued, expired — any source mixed.
 Only include prices found via search. Empty arrays fine. URLs must be real.`;
 
+  const content = [
+    { type: 'image', source: { type: 'base64', media_type: item.mtype, data: item.b64 } },
+    { type: 'text', text: `Item identified as: ${item.name}. Find current prices. Return only the JSON.` }
+  ];
+
   try {
     const data = await fetchAPI({
-      model: SONNET,
-      max_tokens: 4096,
-      system: sys,
+      model: SONNET, max_tokens: 4096, system: sys,
       tools: [{ type: 'web_search_20250305', name: 'web_search' }],
-      messages: [{ role: 'user', content: [
-        { type: 'image', source: { type: 'base64', media_type: mtype, data: b64 } },
-        { type: 'text', text: 'Find current prices for this item. Return only the JSON.' }
-      ]}]
+      messages: [{ role: 'user', content }]
     }, key);
 
     const txt = (data.content||[]).filter(x=>x.type==='text').map(x=>x.text).join('');
     if (!txt) throw new Error('No text response. Try again.');
     let d; try { d = JSON.parse(extractJSON(txt)); } catch(pe) { throw new Error('Parse failed: ' + pe.message); }
-
-    renderPrices(body, d);
+    renderPrices(body, d, id);
   } catch(err) {
+    const links = buildSearchLinks(item.name);
     body.innerHTML = `<div class="err-inline">${err.message}</div>
-      <button class="btn small" style="margin-top:6px" onclick="getPrices('${id}','${b64.replace(/'/g,"\\'")}','${mtype}')">Retry</button>`;
+      <div class="link-row">
+        <a class="link-btn" href="${links.ebay}" target="_blank" rel="noopener">eBay</a>
+        <a class="link-btn" href="${links.google}" target="_blank" rel="noopener">Google Shopping</a>
+        <a class="link-btn" href="${links.fb}" target="_blank" rel="noopener">FB Marketplace</a>
+      </div>
+      <button class="btn sm primary" style="margin-top:8px" onclick="getPrices('${id}')">Retry</button>`;
   }
 }
 
@@ -291,12 +403,15 @@ function row(p, t3) {
     '</div></div>';
 }
 
-function renderPrices(container, d) {
+function renderPrices(container, d, id) {
   if (d.error) { container.innerHTML = '<div class="err-inline">' + d.error + '</div>'; return; }
+  const links = buildSearchLinks(store[id]?.name || '');
   let h = '';
   h += '<div class="label" style="margin-top:10px">Resale Estimate</div>';
   h += '<div class="box"><div class="resale-num">' + (d.resale_estimate||'—') + '</div><div class="resale-pct">' + (d.resale_vs_retail||'') + '</div></div>';
   h += '<div class="label">Resale Analysis</div><div class="box">' + (d.resale_analysis||'—') + '</div>';
+  h += '<div class="label">Quick Search</div>';
+  h += `<div class="link-row"><a class="link-btn" href="${links.ebay}" target="_blank" rel="noopener">eBay</a><a class="link-btn" href="${links.google}" target="_blank" rel="noopener">Google Shopping</a><a class="link-btn" href="${links.fb}" target="_blank" rel="noopener">FB Marketplace</a></div>`;
   h += '<div class="label">Tier 1 — Major Retailers</div>';
   d.tier1?.length ? d.tier1.forEach(p=>h+=row(p,false)) : (h+='<p class="none">None found</p>');
   h += '<div class="label">Tier 2 — Active Listings</div>';
